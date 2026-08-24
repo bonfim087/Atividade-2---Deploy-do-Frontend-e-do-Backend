@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Cartaz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="marquee">
+        <div class="bulbs bulbs-top" aria-hidden="true"></div>
+        <h1 class="marquee-title">Em cartaz</h1>
+        <p class="marquee-subtitle">O catálogo completo de sessões, direto da bilheteria</p>
+        <div class="bulbs bulbs-bottom" aria-hidden="true"></div>
+    </header>
+
+    <main id="page">
+        <div id="estado-carregando" class="estado">
+            <div class="reel" aria-hidden="true"></div>
+            <p>Revelando o rolo da programação...</p>
+        </div>
+
+        <div id="estado-erro" class="estado oculto">
+            <h2>Sessão cancelada</h2>
+            <p>Não conseguimos falar com a bilheteria. Confira se o servidor está rodando em <code>localhost:3000</code>.</p>
+            <button id="botao-tentar" class="botao">Reabrir a bilheteria</button>
+        </div>
+
+        <div id="estado-vazio" class="estado oculto">
+            <h2>Nenhuma sessão no cartaz</h2>
+            <p>Quando um filme for cadastrado, ele aparece aqui na hora.</p>
+        </div>
+
+        <section id="filmes" class="salas oculto"></section>
+    </main>
+
+    <footer class="rodape">
+        <p>Programação ao vivo &middot; <code>GET /all-movies</code></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
