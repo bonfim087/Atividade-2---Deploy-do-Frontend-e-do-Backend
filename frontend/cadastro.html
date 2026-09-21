@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Filme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Cadastrar Filme</h1>
+
+    <form id="form-filme">
+
+        <label>Título:</label>
+        <input type="text" id="title" required>
+
+        <label>Gênero:</label>
+        <input type="text" id="gender" required>
+
+        <label>Duração:</label>
+        <input type="number" id="duration" required>
+
+        <label>Classificação indicativa:</label>
+        <input type="text" id="ageLimit" placeholder="Ex: 10 ou L" required>
+
+        <button type="submit">Cadastrar filme</button>
+
+    </form>
+
+    <a href="index.html">Voltar para filmes</a>
+
+    <script>
+        document.getElementById("form-filme").addEventListener("submit", async (event) => {
+            event.preventDefault()
+
+            const filme = {
+                title: document.getElementById("title").value,
+                gender: document.getElementById("gender").value,
+                duration: document.getElementById("duration").value,
+                ageLimit: document.getElementById("ageLimit").value
+            }
+
+            const resposta = await fetch("http://localhost:3000/create-movie", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(filme)
+            })
+
+            const resultado = await resposta.json()
+
+            alert(resultado.message)
+
+            if (resposta.ok) {
+                window.location.href = "index.html"
+            }
+        })
+    </script>
+
+</body>
+</html>

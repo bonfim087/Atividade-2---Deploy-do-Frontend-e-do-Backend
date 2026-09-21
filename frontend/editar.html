@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Filme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Editar Filme</h1>
+
+    <form id="form-filme">
+
+        <label>Título:</label>
+        <input type="text" id="title" required>
+
+        <label>Gênero:</label>
+        <input type="text" id="gender" required>
+
+        <label>Duração:</label>
+        <input type="number" id="duration" required>
+
+        <label>Classificação indicativa:</label>
+        <input type="text" id="ageLimit" required>
+
+        <button type="submit">Salvar alterações</button>
+
+    </form>
+
+    <a href="index.html">Voltar para filmes</a>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search)
+        const id = parametros.get("id")
+
+        async function carregarFilme() {
+
+            const resposta = await fetch("http://localhost:3000/all-movies")
+            const filmes = await resposta.json()
+
+            const filme = filmes.find((filme) => filme.id == id)
+
+            if (!filme) {
+                alert("Filme não encontrado!")
+                window.location.href = "index.html"
+                return
+            }
+
+            document.getElementById("title").value = filme.title
+            document.getElementById("gender").value = filme.gender
+            document.getElementById("duration").value = filme.duration
+            document.getElementById("ageLimit").value = filme.ageLimit
+        }
+
+        document.getElementById("form-filme").addEventListener("submit", async (event) => {
+
+            event.preventDefault()
+
+            const filme = {
+                title: document.getElementById("title").value,
+                gender: document.getElementById("gender").value,
+                duration: document.getElementById("duration").value,
+                ageLimit: document.getElementById("ageLimit").value
+            }
+
+            const resposta = await fetch(`http://localhost:3000/edit-movie/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(filme)
+            })
+
+            const resultado = await resposta.json()
+
+            alert(resultado.message)
+
+            if (resposta.ok) {
+                window.location.href = "index.html"
+            }
+        })
+
+        carregarFilme()
+    </script>
+
+</body>
+</html>

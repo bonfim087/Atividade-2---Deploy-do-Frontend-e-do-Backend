@@ -1,27 +1,523 @@
-#page {
-    max-width: 1300px;
-    margin: auto;
-}
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
 
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(255, 80, 160, 0.18), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(190, 40, 120, 0.15), transparent 30%),
+        linear-gradient(135deg, #160711, #2b0b20 50%, #12050d);
+    color: #fff;
+}
+
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+
+#page {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 45px 0 70px;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
 h1 {
     text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #fff;
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 0 10px rgba(255, 60, 150, 0.5),
+        0 0 30px rgba(255, 60, 150, 0.25);
 }
+
+h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin: 18px auto 35px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ff2f92, #ff72b7);
+    box-shadow: 0 0 15px rgba(255, 47, 146, 0.7);
+}
+
+
+/* =========================
+   BOTÃO CADASTRAR
+========================= */
+
+.botao-cadastrar {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 45px;
+    padding: 14px 28px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #ff2388,
+        #c41463
+    );
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 25px rgba(255, 35, 136, 0.30),
+        inset 0 1px 0 rgba(255,255,255,0.25);
+
+    transition: 0.3s ease;
+}
+
+.botao-cadastrar:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 12px 35px rgba(255, 35, 136, 0.50),
+        0 0 20px rgba(255, 35, 136, 0.25);
+}
+
+
+/* =========================
+   GRID DOS FILMES
+========================= */
 
 .filmes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
 }
 
+
+/* =========================
+   CARDS
+========================= */
+
 .filmes div {
-    width: 300px;
-    height: 200px;
-    border: 1px solid black;
-    padding: 20px;
+    position: relative;
+
+    min-height: 255px;
+
+    padding: 27px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.04)
+        );
+
+    border: 1px solid rgba(255, 105, 175, 0.25);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.30),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* brilho do card */
+
+.filmes div::before {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    top: -70px;
+    right: -50px;
+
+    background: #ff2f92;
+
+    opacity: 0.18;
+
+    border-radius: 50%;
+
+    filter: blur(30px);
+}
+
+
+/* linha superior */
+
+.filmes div::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 3px;
+
+    border-radius: 0 0 10px 10px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ff2f92,
+        #ff75b8,
+        transparent
+    );
+
+    opacity: 0.8;
+}
+
+
+/* efeito ao passar o mouse */
+
+.filmes div:hover {
+    transform: translateY(-9px);
+
+    border-color: rgba(255, 70, 155, 0.65);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.45),
+        0 0 25px rgba(255, 35, 136, 0.12);
+}
+
+
+/* =========================
+   TÍTULO DOS FILMES
+========================= */
+
+.filmes h2 {
+    position: relative;
+
+    margin-bottom: 23px;
+
+    font-size: 21px;
+    line-height: 1.25;
+
+    color: #fff;
+
+    z-index: 1;
+}
+
+.filmes h2::first-letter {
+    color: #ff4c9d;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.filmes p {
+    position: relative;
+
+    margin: 13px 0;
+
+    color: #d8cbd2;
+
+    font-size: 14px;
+
+    z-index: 1;
+}
+
+.filmes strong {
+    color: #ff72b4;
+}
+
+
+/* =========================
+   BOTÕES DOS CARDS
+========================= */
+
+.filmes button {
+    position: relative;
+
+    margin-top: 12px;
+    margin-right: 6px;
+
+    padding: 9px 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+
+    z-index: 2;
+}
+
+
+/* botão apagar */
+
+.filmes button:first-of-type {
+    background: #b91458;
+
+    box-shadow:
+        0 5px 15px rgba(185, 20, 88, 0.25);
+}
+
+.filmes button:first-of-type:hover {
+    background: #e01b6c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 20px rgba(224, 27, 108, 0.35);
+}
+
+
+/* botão editar */
+
+.filmes button:last-of-type {
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 115, 180, 0.35);
+
+    color: #ff82bb;
+}
+
+.filmes button:last-of-type:hover {
+    background: #ff2f92;
+
+    color: white;
+
+    border-color: #ff2f92;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FORMULÁRIOS
+========================= */
+
+form {
+    width: 100%;
+    max-width: 550px;
+
+    margin: 40px auto;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.05)
+        );
+
+    border: 1px solid rgba(255, 105, 175, 0.30);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.35);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* título do formulário */
+
+form h1 {
+    margin-bottom: 20px;
+}
+
+
+/* labels */
+
+form label {
+    display: block;
+
+    margin: 18px 0 8px;
+
+    color: #ff78b7;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* campos */
+
+form input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: rgba(0,0,0,0.25);
+
+    color: white;
+
+    border: 1px solid rgba(255, 115, 180, 0.25);
+
     border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: 0.25s ease;
+}
+
+form input::placeholder {
+    color: #9f8994;
+}
+
+form input:focus {
+    border-color: #ff3c91;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 60, 145, 0.12),
+        0 0 15px rgba(255, 60, 145, 0.12);
+}
+
+
+/* botão do formulário */
+
+form button {
+    width: 100%;
+
+    margin-top: 28px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #ff2388,
+        #c41463
+    );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(255, 35, 136, 0.30);
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+a:not(.botao-cadastrar) {
+    display: block;
+
+    width: fit-content;
+
+    margin: 25px auto;
+
+    color: #ff72b4;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+a:not(.botao-cadastrar):hover {
+    color: #ffafd1;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1150px) {
+
+    .filmes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 850px) {
+
+    #page {
+        width: 92%;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .filmes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    #page {
+        padding-top: 30px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .filmes {
+        grid-template-columns: 1fr;
+    }
+
+    .filmes div {
+        min-height: 230px;
+    }
+
+    form {
+        padding: 25px;
+    }
+
 }
