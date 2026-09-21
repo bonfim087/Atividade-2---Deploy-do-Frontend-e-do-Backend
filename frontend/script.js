@@ -1,5 +1,7 @@
+const API = "https://atividade-2-deploy-do-frontend-e-do-blond.vercel.app"
+
 async function buscarFilmes() {
-    const resposta = await fetch("http://localhost:3000/all-movies")
+    const resposta = await fetch(`${API}/all-movies`)
 
     const filmes = await resposta.json()
 
@@ -11,11 +13,8 @@ async function buscarFilmes() {
         sectionFilmes.innerHTML += `
             <div>
                 <h2>${filme.title}</h2>
-
                 <p><strong>Gênero:</strong> ${filme.gender}</p>
-
                 <p><strong>Duração:</strong> ${filme.duration} minutos</p>
-
                 <p>
                     <strong>Classificação indicativa:</strong>
                     ${filme.ageLimit === "L" ? "Livre" : filme.ageLimit + " anos"}
@@ -40,7 +39,7 @@ async function apagarFilme(id) {
         return
     }
 
-    const resposta = await fetch(`http://localhost:3000/delete-movie/${id}`, {
+    const resposta = await fetch(`${API}/delete-movie/${id}`, {
         method: "DELETE"
     })
 

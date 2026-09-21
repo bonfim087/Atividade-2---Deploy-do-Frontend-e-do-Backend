@@ -121,6 +121,12 @@ app.put("/edit-movie/:id", (request, response) => {
     )
 })
 
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000!")
-})
+// Exportar para a Vercel
+export default app
+
+// Rodar localmente
+if (process.env.NODE_ENV !== "production") {
+    app.listen(3000, () => {
+        console.log("Servidor rodando na porta 3000!")
+    })
+}

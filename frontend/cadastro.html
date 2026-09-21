@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +34,7 @@
 
     <script>
         document.getElementById("form-filme").addEventListener("submit", async (event) => {
+
             event.preventDefault()
 
             const filme = {
@@ -42,7 +44,7 @@
                 ageLimit: document.getElementById("ageLimit").value
             }
 
-            const resposta = await fetch("http://localhost:3000/create-movie", {
+            const resposta = await fetch("https://atividade-2-deploy-do-frontend-e-do-blond.vercel.app/create-movie", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -57,8 +59,10 @@
             if (resposta.ok) {
                 window.location.href = "index.html"
             }
+
         })
     </script>
 
 </body>
+
 </html>

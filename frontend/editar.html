@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,12 +33,14 @@
     <a href="index.html">Voltar para filmes</a>
 
     <script>
+        const API = "https://atividade-2-deploy-do-frontend-e-do-blond.vercel.app"
+
         const parametros = new URLSearchParams(window.location.search)
         const id = parametros.get("id")
 
         async function carregarFilme() {
 
-            const resposta = await fetch("http://localhost:3000/all-movies")
+            const resposta = await fetch(`${API}/all-movies`)
             const filmes = await resposta.json()
 
             const filme = filmes.find((filme) => filme.id == id)
@@ -65,7 +68,7 @@
                 ageLimit: document.getElementById("ageLimit").value
             }
 
-            const resposta = await fetch(`http://localhost:3000/edit-movie/${id}`, {
+            const resposta = await fetch(`${API}/edit-movie/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -80,10 +83,12 @@
             if (resposta.ok) {
                 window.location.href = "index.html"
             }
+
         })
 
         carregarFilme()
     </script>
 
 </body>
+
 </html>
